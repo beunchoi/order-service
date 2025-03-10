@@ -8,6 +8,7 @@ import com.hanghae.orderservice.domain.order.dto.ReturnResponseDto;
 import com.hanghae.orderservice.domain.order.service.OrderService;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,11 +30,9 @@ public class OrderController {
 
   @PostMapping
   public ResponseEntity<ResponseMessage> createOrder(
-      HttpServletRequest request,
       @RequestParam("productId") String productId,
       @RequestBody OrderRequestDto requestDto) {
-    String userId = new ParseRequestUtil().extractUserIdFromRequest(request);
-    OrderResponseDto savedOrder = orderService.createOrder(requestDto, productId, userId);
+    OrderResponseDto savedOrder = orderService.createOrder(requestDto, productId, UUID.randomUUID().toString());
 
     ResponseMessage message = ResponseMessage.builder()
         .data(savedOrder)
