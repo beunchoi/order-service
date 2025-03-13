@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-@Primary
 public class OrderServiceImpl1 implements OrderService {
 
   private final OrderRepository orderRepository;
