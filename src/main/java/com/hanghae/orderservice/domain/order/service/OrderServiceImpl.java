@@ -44,10 +44,10 @@ public class OrderServiceImpl implements OrderService {
 
     // 주문 데이터 저장
     Order savedOrder = orderRepository.save(new Order(requestDto, userId, product));
-    int totalPrice = savedOrder.getPrice() * savedOrder.getQuantity();
-    orderEventProducer.publish(new OrderCreatedEvent(savedOrder.getOrderId(),
-        requestDto.getPaymentMethodId(), totalPrice,
-        savedOrder.getProductId(), savedOrder.getQuantity()));
+//    int totalPrice = savedOrder.getPrice() * savedOrder.getQuantity();
+//    orderEventProducer.publish(new OrderCreatedEvent(savedOrder.getOrderId(),
+//        requestDto.getPaymentMethodId(), totalPrice,
+//        savedOrder.getProductId(), savedOrder.getQuantity()));
 
     return new OrderResponseDto(savedOrder);
   }
